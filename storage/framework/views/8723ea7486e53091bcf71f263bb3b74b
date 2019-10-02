@@ -1,0 +1,92 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+	<div class="row">
+		<div  class="col-md-12">
+			<div class="table-responsive">
+				<div class="pakage-css">
+					<div class="title-goi-thau">Danh sách gói thầu mới</div>
+					<table class="table table-striped table-bordered table-hover" id="lst">
+						<thead>
+							<tr >
+								<th>Stt</th>                                
+								<th class="text-center">Tên gói thầu</th>
+								<th class="text-center">Bên mời thầu</th>
+								<th>Ngày đăng</th>
+							</tr>
+						</thead>
+						<tbody id="result">
+							<?php if(count($goithau)>0): ?>
+							<?php $i = 1;?>
+								<?php foreach($goithau as $item): ?>
+									<?php 
+										$dinh_dang_cu =  substr($item->created_at,0,10);
+										$ngaycapnhat = date("d-m-Y", strtotime($dinh_dang_cu));
+									?>
+									<tr>
+										<td style="vertical-align: middle;"><?php echo e($i); ?></td>
+										<td style="vertical-align: middle;"><a target = '_blank' href = "<?php echo $item->link; ?>"><?php echo e($item->title); ?></a></td>
+										<td style="vertical-align: middle;"><?php echo e($item->bidder); ?></td>
+										<td style="vertical-align: middle;"><?php echo e($ngaycapnhat); ?></td>
+									</tr>
+									<?php  $i++; ?>
+								<?php endforeach; ?>
+							<?php else: ?>
+								<tr>
+									<td colspan="4" class="text-center">
+										<h3 class="text-danger">Chưa có gói thầu mới</h3>
+									</td>
+								</tr>
+							<?php endif; ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div  class="col-md-12">
+			<div class="table-responsive">
+				<div class="pakage-css">
+					<div class="title-goi-thau">Danh sách gói văn bản mới</div>
+					<table class="table table-striped table-bordered table-hover" id="lst">
+						<thead>
+							<tr >
+								<th>Stt</th>                                
+								<th  class="text-center">Tên văn bản</th>
+								<th>Ngày đăng</th>
+							</tr>
+						</thead>
+						<tbody id="result">
+							<?php if(count($vanban)>0): ?>
+							<?php $i = 1;?>
+								<?php foreach($vanban as $item): ?>
+									<?php 
+										$dinh_dang_cu2 =  substr($item->created_at,0,10);
+										$ngaycapnhat2 = date("d-m-Y", strtotime($dinh_dang_cu));
+									?>
+									<tr>
+										<td style="vertical-align: middle;"><?php echo e($i); ?></td>
+										<td style="vertical-align: middle;"><a target = '_blank' href = "<?php echo $item->link; ?>"><?php echo e($item->title); ?></a></td>
+										<td style="vertical-align: middle;"><?php echo e($ngaycapnhat2); ?></td>
+									</tr>
+									<?php  $i++; ?>
+								<?php endforeach; ?>
+							<?php else: ?>
+								<tr>
+									<td colspan="4" class="text-center">
+										<h3 class="text-danger">Chưa có văn bản mới</h3>
+									</td>
+								</tr>
+							<?php endif; ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="margin-top: 40px;"></div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

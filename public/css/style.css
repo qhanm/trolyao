@@ -1,0 +1,31 @@
+.wallpaper{
+	width: 100%;
+	-webkit-box-shadow: 0 0 5px rgba(0,40,53,.3);
+	-moz-box-shadow: 0 0 5px rgba(0,40,53,.3);
+	box-shadow: 0 0 5px rgba(0,40,53,.3);
+	background-color: #fff;
+	border-radius: 3px;
+	margin-bottom: 30px;
+	border: 1px solid #ccc;
+}
+.wallpaper .wallpaper-heading{
+	background: #f0f0f0;
+	width: 100%;
+	padding: 10px 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.wallpaper .wallpaper-content{
+	width: 100%;
+	padding: 10px 10px;
+	font-size: 16px;
+}
+.wallpaper .wallpaper-content span{color: red; font-size: 18px;}
+
+.clear{clear:both;}
+
+.fixed-alert{
+	top: 150px;
+	position: fixed;
+	z-index: 99;
+}
