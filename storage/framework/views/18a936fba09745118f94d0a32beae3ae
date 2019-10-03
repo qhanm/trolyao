@@ -2,6 +2,7 @@
 Quản lý Từ Khóa
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+
  <!-- Page Content -->  
 <div class="col-sm-12">
 <div style="text-align: center; ">
@@ -387,4 +388,4 @@ $(document).ready(function(){
 
 
 
-<?php echo $__env->make('user_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

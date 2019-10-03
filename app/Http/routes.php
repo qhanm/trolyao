@@ -1,5 +1,4 @@
 <?php
-
 // Route::get('/', 'WelcomeController@index');
 
 // Route::get('home', 'HomeController@index');
@@ -369,16 +368,56 @@ Route::get("search",[
 ]);
 
 
-Route::get('user/mamage-keyword', ['as' => 'mamage-keyword', 'uses' => 'ManageKeyController@index']);
-Route::get('user/getManageKeyWordList/{pageRecord}/{pageCurrent}/{search}', ['as' => 'getManageKeyWordList', 'uses' => 'ManageKeyController@getManageKeyWordList']);
 
-Route::get('user/addManageKeyword', ['as' => 'addManageKeyword', 'uses' => 'ManageKeyController@addManageKeyword']);
+/*
+*
+* @Author: Nam.Quach
+*
+*/
 
-Route::get('user/deleteManagerKeyWork/{id}', ['as' => 'deleteManagerKeyWork', 'uses' => 'ManageKeyController@deleteManagerKeyWork']);
+// Route::get('mamage-keyword', ['as' => 'mamage-keyword', 'uses' => 'ManageKeyController@index']);
+// Route::get('getManageKeyWordList/{pageRecord}/{pageCurrent}/{search}', ['as' => 'getManageKeyWordList', 'uses' => 'ManageKeyController@getManageKeyWordList']);
 
-Route::get('user/editManageKeyWord/{id}', ['as' => 'editManageKeyWord', 'uses' => 'ManageKeyController@editManageKeyWord']);
+// Route::get('addManageKeyword', ['as' => 'addManageKeyword', 'uses' => 'ManageKeyController@addManageKeyword']);
 
-Route::get('user/updateManageKeyWord', ['as' => 'updateManageKeyWord', 'uses' => 'ManageKeyController@updateManageKeyWord']);
+// Route::get('deleteManagerKeyWork/{id}', ['as' => 'deleteManagerKeyWork', 'uses' => 'ManageKeyController@deleteManagerKeyWork']);
 
-Route::get('user/deleteMultyKey', ['as' => 'deleteMultyKey', 'uses' => 'ManageKeyController@deleteMultyKey']);
+// Route::get('editManageKeyWord/{id}', ['as' => 'editManageKeyWord', 'uses' => 'ManageKeyController@editManageKeyWord']);
 
+// Route::get('updateManageKeyWord', ['as' => 'updateManageKeyWord', 'uses' => 'ManageKeyController@updateManageKeyWord']);
+
+// Route::get('deleteMultyKey', ['as' => 'deleteMultyKey', 'uses' => 'ManageKeyController@deleteMultyKey']);
+
+
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+
+	Route::get('mamage-keyword-admin', ['as' => 'mamage-keyword-admin', 'uses' => 'AdminController@indexNamQuach']);
+	Route::get('getManageKeyWordList/{pageRecord}/{pageCurrent}/{search}', ['as' => 'AuthgetManageKeyWordList', 'uses' => 'AdminController@getManageKeyWordList']);
+
+	Route::get('addManageKeyword', ['as' => 'AuthaddManageKeyword', 'uses' => 'AdminController@addManageKeyword']);
+
+	Route::get('deleteManagerKeyWork/{id}', ['as' => 'AuthdeleteManagerKeyWork', 'uses' => 'AdminController@deleteManagerKeyWork']);
+
+	Route::get('editManageKeyWord/{id}', ['as' => 'AutheditManageKeyWord', 'uses' => 'AdminController@editManageKeyWord']);
+
+	Route::get('updateManageKeyWord', ['as' => 'AuthupdateManageKeyWord', 'uses' => 'AdminController@updateManageKeyWord']);
+
+	Route::get('deleteMultyKey', ['as' => 'AuthdeleteMultyKey', 'uses' => 'AdminController@deleteMultyKey']);
+
+});
+
+Route::group(['prefix'=>'user','middleware'=>'auth'],function(){
+	Route::get('mamage-keyword', ['as' => 'mamage-keyword', 'uses' => 'ManageKeyController@index']);
+	Route::get('getManageKeyWordList/{pageRecord}/{pageCurrent}/{search}', ['as' => 'getManageKeyWordList', 'uses' => 'ManageKeyController@getManageKeyWordList']);
+
+	Route::get('addManageKeyword', ['as' => 'addManageKeyword', 'uses' => 'ManageKeyController@addManageKeyword']);
+
+	Route::get('deleteManagerKeyWork/{id}', ['as' => 'deleteManagerKeyWork', 'uses' => 'ManageKeyController@deleteManagerKeyWork']);
+
+	Route::get('editManageKeyWord/{id}', ['as' => 'editManageKeyWord', 'uses' => 'ManageKeyController@editManageKeyWord']);
+
+	Route::get('updateManageKeyWord', ['as' => 'updateManageKeyWord', 'uses' => 'ManageKeyController@updateManageKeyWord']);
+
+	Route::get('deleteMultyKey', ['as' => 'deleteMultyKey', 'uses' => 'ManageKeyController@deleteMultyKey']);
+
+});

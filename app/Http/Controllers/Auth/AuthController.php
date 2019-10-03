@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\User;  //link: app/User
 use Hash;
 use Mail;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddUser;
 class AuthController extends Controller {
@@ -109,17 +110,20 @@ class AuthController extends Controller {
 		return view ('auth.success');
 	}
 	public function postLogin (LoginRequest $request){
+
 		//Thông báo lỗi xem trong file /app/Http/Requests/LoginRequest.php
 		$user  = array('email' =>$request->email ,'password'=> $request->password, 'level'=> 1,'status' => 1 );
 		$admin  = array('email' =>$request->email ,'password'=> $request->password, 'level'=> 2,'status' => 1 );
 		
 		if ($this->auth->attempt($user))   //Neu quyen la User
 		{		  
+			session(['roles' => 1]);
 		  	//return redirect ('user/homevanban');
 		  	return redirect('user/dashboard_user');
 		}
 		else if ($this->auth->attempt($admin)){    //Neu quyen la Admin
 			//return redirect('admin/list-package-vanban');
+			session(['roles' => 2]);
 			return redirect('admin/dash_board');
 		}
 
@@ -166,4 +170,8 @@ class AuthController extends Controller {
     	return view('auth.register_success');
     }
 	
+
+
+    
+
 }

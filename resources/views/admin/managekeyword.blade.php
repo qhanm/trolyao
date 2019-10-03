@@ -1,7 +1,9 @@
-<?php $__env->startSection('active'); ?>
+@extends('admin_master')
+@section('active')
 Quản lý Từ Khóa
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?>
+@endsection
+@section('content')
+
  <!-- Page Content -->  
 <div class="col-sm-12">
 <div style="text-align: center; ">
@@ -58,7 +60,7 @@ Quản lý Từ Khóa
         </div>
         <form action="" method="post" id="addKeyword" name="addKeyword" novalidate="novalidate">
           <div class="modal-body">
-           <input name="_token" type="hidden" value="<?php echo csrf_token(); ?>" />
+           <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
            <div class="form-group">
             <label for="usr">Từ khóa:</label>
             <input type="text" class="form-control" id="keyword" name="keyword">
@@ -382,9 +384,7 @@ $(document).ready(function(){
 </div>
 </div>
 
-<?php $__env->stopSection(); ?>
+@endsection
 
 
 
-
-<?php echo $__env->make('user_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

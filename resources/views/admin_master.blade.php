@@ -180,8 +180,8 @@
         <a href="{!! route ('admin_profile')!!}"><i class="  glyphicon glyphicon-user"></i> Thông tin tài khoản</a>
       </li>
 
-      <li class="@yield ('thongtin_active')" >
-        <a href="{!! route ('admin_profile')!!}"><i class="  glyphicon glyphicon-user"></i> Thông tin tài khoản</a>
+      <li class="@yield ('mamage-keyword-admin')" >
+        <a href="{!! route('mamage-keyword-admin')!!}"><i class="glyphicon glyphicon-cog"></i> Quản lý từ khóa</a>
       </li>
 
 

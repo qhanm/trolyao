@@ -180,6 +180,10 @@
         <a href="<?php echo route ('admin_profile'); ?>"><i class="  glyphicon glyphicon-user"></i> Thông tin tài khoản</a>
       </li>
 
+      <li class="<?php echo $__env->yieldContent('mamage-keyword-admin'); ?>" >
+        <a href="<?php echo route('mamage-keyword-admin'); ?>"><i class="glyphicon glyphicon-cog"></i> Quản lý từ khóa</a>
+      </li>
+
 
     <!--   <li class="<?php echo $__env->yieldContent('dashboard_active'); ?>" >
         <a href="<?php echo e(route('dash_board')); ?> "><i class=" glyphicon glyphicon-dashboard"></i> Thống kê</a>

@@ -3,10 +3,7 @@
 Quản lý Từ Khóa
 @endsection
 @section('content')
- <!-- Page Content -->
-     <?php 
-     //dd($lstKeyWord);
-     ?>   
+ <!-- Page Content -->  
 <div class="col-sm-12">
 <div style="text-align: center; ">
      <h2>Danh sách từ khóa đã thêm vào</h2>    
@@ -24,7 +21,12 @@ Quản lý Từ Khóa
                       </form>
                       
                   </td></tr>
-                  <tr role="row"><th width="30" class="sorting_asc" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 30px;"></th><th width="50" class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Stt: activate to sort column ascending" style="width: 50px;">Stt</th><th class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Từ khóa: activate to sort column ascending" style="width: 470px;">Từ khóa</th><th class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Thao tác: activate to sort column ascending" style="width: 390px;">Thao tác</th></tr>
+                  <tr role="row"><th width="30" class="sorting_asc" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 30px;"></th><th width="50" class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Stt: activate to sort column ascending" style="width: 50px;">Stt</th><th class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Từ khóa: activate to sort column ascending" style="width: 470px;">Từ khóa</th>
+                    <?php if(Auth::user()->level == 2): ?>
+                      <th class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Thao tác: activate to sort column ascending" style="width: 390px;">User</th>
+                    <?php endif; ?>
+                    <th class="sorting" tabindex="0" aria-controls="lst" rowspan="1" colspan="1" aria-label="Thao tác: activate to sort column ascending" style="width: 390px;">Thao tác</th>
+                  </tr>
                   </thead>
                    
                     <tbody id="tblContent">
@@ -136,6 +138,8 @@ Quản lý Từ Khóa
 
 $(document).ready(function(){
 
+    var level = "<?php echo Auth::user()->level; ?>";
+    
     var pageRecord = $("#select_list").val();
 
     $(document).on("change", "#pageRecord", function(){
@@ -171,11 +175,22 @@ $(document).ready(function(){
 
                     var rClass = (key + 1) % 2 === 0 ? "old" : "even"; 
 
+                    var level = "<?php echo Auth::user()->level; ?>";
+
+                    var userN = null;
+
+                    if( level == 2 ){
+                      userN = `
+                      <td style="font-size: 150%;">${value.name}</td>
+                      `;
+                    }
+                    console.log(level);
                      render += `
                     <tr id="" role="row" class="${rClass}">
                         <td style="text-align: center;" class="sorting_1"><input type="checkbox" name="id[${value.key_word_id}]" class="checkbox" value="${value.key_word_id}"></td>
                         <td style="font-size: 150%;">${stt}</td>                    
                           <td style="font-size: 150%;">${value.keyword}</td>
+                          ${userN}
                           <td>
                               <button class="btn btn-primary btn-xs edit_bm glyphicon glyphicon-pencil tukhoa" data-toggle="modal" data-target="#modal_edit_keywork" data-id="${value.key_word_id}"></button>
                               

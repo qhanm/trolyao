@@ -1,5 +1,9 @@
 <?php 
-
+/*
+*
+*	@Author: Nam.Quach
+*
+*/
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -27,9 +31,15 @@ class ManageKeyController extends Controller{
 		}
 
 		$lstKeyWord = $lstKeyWord->get();
-		return view("managekey.index")->with([
-			"lstKeyWord" => $lstKeyWord
-		]);
+
+		if($user->level == 1){
+
+			return view("managekey.index");
+		}else{
+			return view("admin.managekeyword");
+		}
+
+		
 	}
 
 	public function getManageKeyWordList($pageRecored = 10, $currentPage = 1, $keySearch = null){
@@ -155,5 +165,6 @@ class ManageKeyController extends Controller{
 	keyword TEXT NOT null ,
 	user_id INT(10), 
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 )
 */
